@@ -2,136 +2,184 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>한남한녀 주식회사 경조 회비</title>
-
+    <title>윤릴라 레이더</title>
     <style>
         body {
-            font-family: "맑은 고딕", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: linear-gradient(135deg, #eceff1, #f5f5f5);
             margin: 0;
-            padding: 20px 0;
-        }
-
-        /* 전체 앱을 모바일 카드처럼 가운데 정렬 */
-        .app {
-            max-width: 480px;
-            margin: 0 auto;
-            background-color: #fdfdfd;
-            border-radius: 22px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            overflow: hidden;
-        }
-
-        /* 상단 카톡 느낌 헤더 */
-        .app-header {
-            background: linear-gradient(135deg, #FEE500, #ffe96b);
-            padding: 14px 18px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .header-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 16px;
-            background-color: #3c1e1e;
+            padding: 0;
+            font-family: "맑은 고딕", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #ffe082 0, #ffcc80 30%, #ffb74d 60%, #ffcc80 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #FEE500;
-            font-weight: bold;
-            font-size: 17px;
+            min-height: 100vh;
         }
 
-        .header-text {
+        .app {
+            width: 100%;
+            max-width: 420px;
+            background-color: rgba(255, 255, 255, 0.96);
+            border-radius: 24px;
+            box-shadow: 0 14px 35px rgba(0, 0, 0, 0.25);
+            padding: 20px 20px 18px;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .badge {
+            position: absolute;
+            top: 14px;
+            right: 16px;
+            font-size: 11px;
+            background-color: #ff7043;
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 999px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .gorilla-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 18px;
+            background: radial-gradient(circle at 30% 30%, #ffeb3b 0, #ffb300 40%, #ff6f00 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 34px;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+        }
+
+        .title-wrap {
             display: flex;
             flex-direction: column;
         }
 
-        .header-text .title {
-            font-weight: bold;
-            font-size: 16px;
-            color: #3c1e1e;
+        .title {
+            font-size: 18px;
+            font-weight: 800;
+            color: #4e342e;
         }
 
-        .header-text .subtitle {
-            font-size: 11px;
-            color: #5d4037;
-        }
-
-        .app-body {
-            padding: 16px 14px 20px;
-            background-color: #f5f5f5;
+        .subtitle {
+            font-size: 12px;
+            color: #6d4c41;
         }
 
         .card {
-            background-color: #ffffff;
-            border-radius: 18px;
-            padding: 14px 14px 12px;
-            margin-bottom: 14px;
-            box-shadow: 0 2px 7px rgba(0,0,0,0.06);
+            background-color: #fff7e0;
+            border-radius: 16px;
+            padding: 12px 12px 10px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(255, 204, 128, 0.7);
         }
 
         .card-title {
-            font-weight: 600;
-            font-size: 14px;
-            margin-bottom: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #6d4c41;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .card-title small {
-            font-weight: normal;
             font-size: 11px;
-            color: #777;
+            font-weight: normal;
+            color: #8d6e63;
         }
 
-        .input-row {
+        .name-row {
             display: flex;
-            gap: 8px;
             align-items: center;
-            flex-wrap: wrap;
+            gap: 8px;
             margin-bottom: 6px;
         }
 
-        label {
+        .name-label {
             font-size: 12px;
-            min-width: 80px;
-            color: #555;
+            color: #5d4037;
+            min-width: 60px;
         }
 
-        input[type="text"],
-        input[type="number"] {
-            padding: 6px 9px;
-            border: 1px solid #d0d0d0;
-            border-radius: 10px;
+        .name-value {
+            font-size: 14px;
+            font-weight: 700;
+            color: #3e2723;
+        }
+
+        .alias-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background-color: #ffe0b2;
+            border-radius: 999px;
+            padding: 3px 8px;
+            font-size: 11px;
+            color: #6d4c41;
+            margin-top: 2px;
+        }
+
+        .alias-chip span {
+            font-weight: 700;
+            color: #e65100;
+        }
+
+        .display {
+            background-color: #212121;
+            color: #ffe082;
+            border-radius: 16px;
+            padding: 14px 12px;
+            margin-bottom: 12px;
+            font-family: "Consolas", "SF Mono", monospace;
+            min-height: 76px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .display-line {
             font-size: 13px;
-            background-color: #fafafa;
-            transition: border-color 0.15s, box-shadow 0.15s, background-color 0.15s;
+            line-height: 1.5;
+            word-break: keep-all;
         }
 
-        input[type="text"]:focus,
-        input[type="number"]:focus {
-            outline: none;
-            border-color: #ffcc00;
-            box-shadow: 0 0 0 2px rgba(255, 204, 0, 0.25);
-            background-color: #ffffff;
+        .display-main {
+            font-size: 15px;
+            margin-top: 4px;
         }
 
-        input[type="number"] {
-            width: 140px;
+        .display-tag {
+            position: absolute;
+            bottom: 6px;
+            right: 10px;
+            font-size: 10px;
+            color: #bdbdbd;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
         }
 
         button {
-            padding: 6px 11px;
+            padding: 7px 12px;
             border-radius: 999px;
             border: none;
             cursor: pointer;
             font-size: 12px;
             white-space: nowrap;
-            transition: filter 0.15s, transform 0.05s;
+            transition: filter 0.15s, transform 0.05s, box-shadow 0.15s;
         }
 
         button:active {
@@ -139,511 +187,211 @@
         }
 
         .btn-main {
-            background-color: #FEE500;
-            color: #3c1e1e;
-            font-weight: bold;
+            background-color: #ffb300;
+            color: #3e2723;
+            font-weight: 700;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
         }
 
         .btn-main:hover {
-            filter: brightness(0.96);
+            filter: brightness(1.02);
         }
 
-        .btn-ghost {
-            background-color: #eeeeee;
-            color: #444;
-        }
-
-        .btn-ghost:hover {
-            background-color: #e0e0e0;
-        }
-
-        .account-box {
-            background-color: #fff8d4;
-            border-radius: 14px;
-            padding: 10px 12px;
-            font-size: 13px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .account-label {
-            font-weight: bold;
+        .btn-sub {
+            background-color: #ffe0b2;
             color: #4e342e;
         }
 
-        .account-number {
-            font-family: "Consolas", monospace;
-            font-weight: bold;
+        .btn-ghost {
+            background-color: #fafafa;
+            border: 1px solid #ddd;
+            color: #5d4037;
         }
 
-        .info-text {
-            font-size: 11px;
-            color: #777;
-            margin-top: 4px;
-            line-height: 1.5;
+        .log-card {
+            background-color: #ffffff;
+            border-radius: 16px;
+            padding: 10px 11px 8px;
+            border: 1px solid #e0e0e0;
+            max-height: 120px;
+            overflow-y: auto;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 6px;
+        .log-title {
             font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: #6d4c41;
         }
 
-        th, td {
-            border-bottom: 1px solid #eee;
-            padding: 6px;
-            text-align: center;
-        }
-
-        th {
-            background-color: #f7f7f7;
-            font-weight: bold;
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        .summary {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-top: 8px;
-        }
-
-        .summary-item {
-            flex: 1 1 45%;
-            background-color: #fffbea;
-            border-radius: 12px;
-            padding: 6px 8px;
+        .log-item {
             font-size: 11px;
-            color: #555;
-        }
-
-        .summary-item span.label {
-            display: block;
+            color: #5d4037;
             margin-bottom: 2px;
         }
 
-        .summary-item span.value {
-            font-size: 13px;
-            font-weight: bold;
+        .log-time {
+            color: #9e9e9e;
+            font-size: 10px;
+            margin-right: 4px;
         }
 
-        .error-msg {
-            color: #d32f2f;
-            margin-top: 4px;
-            font-size: 11px;
+        .pulse {
+            animation: pulse 0.5s ease-out;
         }
 
-        .checkbox-cell {
-            font-size: 11px;
+        .shake {
+            animation: shake 0.4s ease-out;
         }
 
-        .checkbox-cell label {
-            min-width: 0;
-            font-size: 11px;
-            color: #555;
+        @keyframes pulse {
+            0%   { transform: scale(1); }
+            50%  { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes shake {
+            0%   { transform: translateX(0); }
+            25%  { transform: translateX(-3px); }
+            50%  { transform: translateX(3px); }
+            75%  { transform: translateX(-2px); }
+            100% { transform: translateX(0); }
         }
 
         @media (max-width: 480px) {
-            .card {
-                border-radius: 16px;
+            .app {
+                margin: 0 10px;
             }
         }
     </style>
 </head>
 <body>
 
-<div class="app">
-    <!-- 상단 헤더 -->
-    <div class="app-header">
-        <div class="header-icon">H</div>
-        <div class="header-text">
-            <span class="title">한남한녀 주식회사 경조 회비</span>
-            <span class="subtitle">회식 / 경조사 N/1 + 추가 정산 계산기</span>
+<div class="app" id="app">
+    <div class="badge">윤릴라 관찰 전용</div>
+
+    <div class="header">
+        <div class="gorilla-icon" id="gorillaIcon">🦍</div>
+        <div class="title-wrap">
+            <div class="title">윤릴라 레이더</div>
+            <div class="subtitle">오늘도 평화로운 고릴라 관찰 일지</div>
         </div>
     </div>
 
-    <div class="app-body">
-
-        <!-- 회사 계좌 카드 -->
-        <div class="card">
-            <div class="card-title">
-                회사 계좌
-                <small>입금 안내용</small>
-            </div>
-            <div class="account-box">
-                <div>
-                    <div class="account-label">한남한녀 주식회사 경조 회비 계좌</div>
-                    <div class="account-number" id="accountText">
-                        기업은행 35112382001015
-                    </div>
-                </div>
-                <button class="btn-ghost" type="button" onclick="copyAccount()">
-                    계좌 복사
-                </button>
-            </div>
-            <div class="info-text">
-                단톡방에 “계좌 + 1인당 금액”을 같이 보내면 깔끔하게 정산 가능합니다.
-            </div>
+    <div class="card">
+        <div class="card-title">
+            대상 정보
+            <small>친구 1명 전용 놀리기 페이지</small>
         </div>
-
-        <!-- 기본 금액 카드 -->
-        <div class="card">
-            <div class="card-title">
-                1. 기본 회식 / 경조 금액
-                <small>여기에 4명이서 나눌 금액 입력</small>
-            </div>
-            <div class="input-row">
-                <label for="totalAmount">기본 총 금액</label>
-                <input type="number" id="totalAmount" min="0" oninput="updateShares()">
-                <span style="font-size:12px;">원</span>
-            </div>
-            <div class="info-text">
-                예) 곽주임, 권부장, 미쓰킴, 발사원이 함께 나눌 전체 금액을 입력합니다.
-            </div>
+        <div class="name-row">
+            <div class="name-label">본명</div>
+            <div class="name-value">윤호</div>
         </div>
-
-        <!-- 추가 정산 카드 -->
-        <div class="card">
-            <div class="card-title">
-                2. 추가 정산 금액
-                <small>특정 인원만 더 부담해야 하는 금액</small>
-            </div>
-            <div class="input-row">
-                <label for="extraAmount">추가 총 금액</label>
-                <input type="number" id="extraAmount" min="0" oninput="updateShares()">
-                <span style="font-size:12px;">원</span>
-            </div>
-            <div class="input-row">
-                <label for="extraPeopleCount">추가 정산 인원 수</label>
-                <input type="number" id="extraPeopleCount" min="1" oninput="updateShares()">
-                <span style="font-size:12px;">명 (예: 나 + 곽주임 → 2명)</span>
-            </div>
-            <div class="info-text">
-                예) 나와 곽주임이 45,000원을 둘이서 나누면 추가 정산 인원 수는 2명입니다.<br>
-                직원 목록에서 “추가” 체크가 된 사람에게만 이 추가 금액이 나눠서 반영됩니다.
-            </div>
+        <div class="name-row" style="margin-bottom:4px;">
+            <div class="name-label">별명</div>
+            <div class="name-value">고릴라</div>
         </div>
-
-        <!-- 직원 카드 -->
-        <div class="card">
-            <div class="card-title">
-                3. 직원 목록 및 최종 정산
-                <small>처음에는 예시 정산 결과가 보입니다.</small>
-            </div>
-            <div class="input-row">
-                <label for="employeeName">직원 이름</label>
-                <input type="text" id="employeeName">
-                <button class="btn-main" type="button" onclick="addEmployee()">추가</button>
-            </div>
-            <div id="errorMessage" class="error-msg"></div>
-
-            <table id="employeeTable">
-                <thead>
-                <tr>
-                    <th>직원 이름</th>
-                    <th class="checkbox-cell">기본</th>
-                    <th class="checkbox-cell">추가</th>
-                    <th>최종 부담 금액</th>
-                    <th>삭제</th>
-                </tr>
-                </thead>
-                <tbody>
-                <!-- 직원 목록이 여기에 추가됨 -->
-                </tbody>
-            </table>
-
-            <div class="summary">
-                <div class="summary-item">
-                    <span class="label">인원 수</span>
-                    <span class="value" id="summaryCount">0명 (기본 0명 / 추가 0명)</span>
-                </div>
-                <div class="summary-item">
-                    <span class="label">기본 1인당 금액</span>
-                    <span class="value" id="summaryBasePer">0원</span>
-                </div>
-                <div class="summary-item">
-                    <span class="label">추가 1인당 금액</span>
-                    <span class="value" id="summaryExtraPer">0원</span>
-                </div>
-                <div class="summary-item">
-                    <span class="label">기본 + 추가 총 금액</span>
-                    <span class="value" id="summaryTotal">0원</span>
-                </div>
-            </div>
-
-            <div class="info-text">
-                - “기본” 체크: 기본 회식/경조 금액(예: 79,000원)을 N분의 1로 나눌 대상입니다.<br>
-                - “추가” 체크: 추가 정산 금액(예: 45,000원)을 나누는 인원 중 직원에게 적용할 대상입니다.<br>
-                - 남는 금액은 곽주임이 부담하거나 다음 회식 적립금으로 사용하면 됩니다.
-            </div>
-
-            <div class="info-text" id="selfInfo" style="margin-top:6px; font-weight: bold; color:#555;">
-                <!-- 나(본인) 부담 안내 텍스트가 여기 들어감 -->
-            </div>
+        <div class="alias-chip">
+            애칭 <span>윤릴라</span> 사용 중 🦍
         </div>
+    </div>
+
+    <div class="display" id="display">
+        <div class="display-line" id="displayLine1">
+            [윤릴라 시스템 가동 중...]
+        </div>
+        <div class="display-line display-main" id="displayLine2">
+            버튼을 눌러 오늘의 윤릴라 상태를 확인해 보세요.
+        </div>
+        <div class="display-tag">Yoonrilla v1.0</div>
+    </div>
+
+    <div class="controls">
+        <button class="btn-main" type="button" onclick="randomRoast()">오늘의 윤릴라 호출</button>
+        <button class="btn-sub" type="button" onclick="randomStatus()">상태 점검</button>
+        <button class="btn-ghost" type="button" onclick="resetDisplay()">초기화</button>
+    </div>
+
+    <div class="log-card" id="logCard">
+        <div class="log-title">윤릴라 로그</div>
+        <!-- 로그가 여기에 추가됨 -->
     </div>
 </div>
 
 <script>
-    // 계좌 복사
-    function copyAccount() {
-        const text = document.getElementById("accountText").innerText.trim();
+    const displayLine1 = document.getElementById("displayLine1");
+    const displayLine2 = document.getElementById("displayLine2");
+    const display = document.getElementById("display");
+    const logCard = document.getElementById("logCard");
+    const gorillaIcon = document.getElementById("gorillaIcon");
 
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(text).then(function () {
-                alert("계좌번호가 클립보드에 복사되었습니다:\n" + text);
-            }).catch(function () {
-                alert("복사가 자동으로 안 되면 직접 드래그해서 복사해 주세요.\n\n" + text);
-            });
-        } else {
-            alert("복사가 자동으로 안 되면 직접 드래그해서 복사해 주세요.\n\n" + text);
-        }
+    const roastMessages = [
+        "오늘도 느긋하게 바나나만 기다리는 윤릴라 발견.",
+        "집중해야 하는데… 윤릴라의 뇌는 이미 정글 타임.",
+        "사람인 척 하지만 자세히 보면 87%는 고릴라인 윤호.",
+        "윤릴라 포효 : \"ㅇㅅㅇ\" (해석: 배고픔 + 귀찮음)",
+        "회의 중 몰래 멍 때리는 윤릴라… 관찰자에게는 다 보임.",
+        "체육관 대신 침대와 합체한 윤릴라 포착.",
+        "오늘의 한 마디 : \"그냥… 살자…\" - 윤릴라 어록 中",
+        "윤릴라 스킬 사용 : '현실 도피 Lv.MAX'",
+        "뚫어져라 핸드폰만 보는 윤릴라… 콘크리트보다 단단한 집중력.",
+        "조용히 있지만, 머릿속은 이미 주말인 윤릴라."
+    ];
+
+    const statusMessages = [
+        "상태 : 졸림 98%, 집중력 2%",
+        "상태 : 배고픔 120%, 움직일 의지 0%",
+        "상태 : 바나나 생각 중… (업무 생각 아님)",
+        "상태 : '집 가고 싶다'를 마음속으로 37번 반복",
+        "상태 : 의자와 한 몸이 되는 중",
+        "상태 : 눈은 떠져 있지만 정신은 야근 거부 중",
+        "상태 : '오늘은 그냥 이런 날' 모드 활성화",
+        "상태 : 인간 모드 10%, 윤릴라 모드 90%",
+        "상태 : 의욕은 방전, 농담은 풀충전",
+        "상태 : 하품으로만 대화 가능"
+    ];
+
+    function addLog(text) {
+        const time = new Date();
+        const hh = String(time.getHours()).padStart(2, "0");
+        const mm = String(time.getMinutes()).padStart(2, "0");
+        const logItem = document.createElement("div");
+        logItem.className = "log-item";
+        logItem.innerHTML = `<span class="log-time">[${hh}:${mm}]</span>${text}`;
+        logCard.appendChild(logItem);
+        logCard.scrollTop = logCard.scrollHeight;
     }
 
-    // 직원 행 추가 (공통 함수)
-    function createEmployeeRow(name, includeBase, includeExtra) {
-        const tableBody = document.querySelector("#employeeTable tbody");
-        const row = document.createElement("tr");
-
-        // 이름 셀
-        const nameCell = document.createElement("td");
-        nameCell.textContent = name;
-        row.appendChild(nameCell);
-
-        // 기본 정산 포함 체크박스 셀
-        const baseCell = document.createElement("td");
-        baseCell.className = "checkbox-cell";
-        const baseLabel = document.createElement("label");
-        baseLabel.style.cursor = "pointer";
-        const baseCheckbox = document.createElement("input");
-        baseCheckbox.type = "checkbox";
-        baseCheckbox.checked = includeBase;
-        baseCheckbox.style.marginRight = "4px";
-        baseCheckbox.onchange = function () {
-            updateShares();
-        };
-        baseLabel.appendChild(baseCheckbox);
-        baseLabel.appendChild(document.createTextNode("기본"));
-        baseCell.appendChild(baseLabel);
-        row.appendChild(baseCell);
-
-        // 추가 정산 대상 체크박스 셀
-        const extraCell = document.createElement("td");
-        extraCell.className = "checkbox-cell";
-        const extraLabel = document.createElement("label");
-        extraLabel.style.cursor = "pointer";
-        const extraCheckbox = document.createElement("input");
-        extraCheckbox.type = "checkbox";
-        extraCheckbox.checked = includeExtra;
-        extraCheckbox.style.marginRight = "4px";
-        extraCheckbox.onchange = function () {
-            updateShares();
-        };
-        extraLabel.appendChild(extraCheckbox);
-        extraLabel.appendChild(document.createTextNode("추가"));
-        extraCell.appendChild(extraLabel);
-        row.appendChild(extraCell);
-
-        // 최종 부담 금액 셀
-        const amountCell = document.createElement("td");
-        amountCell.setAttribute("data-amount", "0");
-        amountCell.textContent = "-";
-        row.appendChild(amountCell);
-
-        // 삭제 버튼 셀
-        const deleteCell = document.createElement("td");
-        const deleteButton = document.createElement("button");
-        deleteButton.textContent = "삭제";
-        deleteButton.className = "btn-ghost";
-        deleteButton.type = "button";
-        deleteButton.onclick = function () {
-            row.remove();
-            updateShares();
-        };
-        deleteCell.appendChild(deleteButton);
-        row.appendChild(deleteCell);
-
-        tableBody.appendChild(row);
+    function animateOnce(elem, className) {
+        elem.classList.remove(className);
+        void elem.offsetWidth; // reflow
+        elem.classList.add(className);
+        setTimeout(() => elem.classList.remove(className), 500);
     }
 
-    // 새 직원 추가 (사용자 입력)
-    function addEmployee() {
-        const nameInput = document.getElementById("employeeName");
-        const errorDiv = document.getElementById("errorMessage");
-        const name = nameInput.value.trim();
-
-        errorDiv.textContent = "";
-
-        if (name === "") {
-            errorDiv.textContent = "직원 이름을 입력해주세요.";
-            nameInput.focus();
-            return;
-        }
-
-        createEmployeeRow(name, true, false);
-
-        nameInput.value = "";
-        nameInput.focus();
-
-        updateShares();
+    function randomRoast() {
+        const msg = roastMessages[Math.floor(Math.random() * roastMessages.length)];
+        displayLine1.textContent = "📡 윤릴라 관찰 결과";
+        displayLine2.textContent = msg;
+        animateOnce(display, "pulse");
+        animateOnce(gorillaIcon, "shake");
+        addLog("윤릴라 호출 → " + msg);
     }
 
-    // 정산 계산
-    function updateShares() {
-        const totalInput = document.getElementById("totalAmount");
-        const extraInput = document.getElementById("extraAmount");
-        const extraCountInput = document.getElementById("extraPeopleCount");
-        const tableBody = document.querySelector("#employeeTable tbody");
-        const rows = tableBody.querySelectorAll("tr");
-
-        const spanCount = document.getElementById("summaryCount");
-        const spanBasePer = document.getElementById("summaryBasePer");
-        const spanExtraPer = document.getElementById("summaryExtraPer");
-        const spanTotal = document.getElementById("summaryTotal");
-        const selfInfo = document.getElementById("selfInfo");
-
-        let baseTotal = parseInt(totalInput.value.trim(), 10);
-        if (isNaN(baseTotal) || baseTotal < 0) {
-            baseTotal = 0;
-        }
-
-        let extraTotal = parseInt(extraInput.value.trim(), 10);
-        if (isNaN(extraTotal) || extraTotal < 0) {
-            extraTotal = 0;
-        }
-
-        let extraPeopleCount = parseInt(extraCountInput.value.trim(), 10);
-        if (isNaN(extraPeopleCount) || extraPeopleCount <= 0) {
-            extraPeopleCount = 0;
-        }
-
-        const totalCount = rows.length;
-        let baseCount = 0;
-        let extraTargetCount = 0;
-
-        // 체크된 인원 수 세기
-        rows.forEach(function (row) {
-            const baseCheckbox = row.children[1].querySelector('input[type="checkbox"]');
-            const extraCheckbox = row.children[2].querySelector('input[type="checkbox"]');
-
-            if (baseCheckbox && baseCheckbox.checked) {
-                baseCount++;
-            }
-            if (extraCheckbox && extraCheckbox.checked) {
-                extraTargetCount++;
-            }
-        });
-
-        let basePer = 0;
-        let extraPer = 0;
-
-        if (baseCount > 0 && baseTotal > 0) {
-            basePer = Math.floor(baseTotal / baseCount);
-        }
-
-        if (extraPeopleCount > 0 && extraTotal > 0) {
-            // 추가 정산은 "전체 추가 정산 인원 수" 기준으로 나눔
-            extraPer = Math.floor(extraTotal / extraPeopleCount);
-        }
-
-        let sumForAllEmployees = 0;
-
-        // 각 직원 셀에 최종 금액 채우기
-        rows.forEach(function (row) {
-            const baseCheckbox = row.children[1].querySelector('input[type="checkbox"]');
-            const extraCheckbox = row.children[2].querySelector('input[type="checkbox"]');
-            const amountCell = row.children[3]; // 네 번째 셀(최종 금액)
-
-            let basePart = 0;
-            let extraPart = 0;
-
-            if (baseCheckbox && baseCheckbox.checked && basePer > 0) {
-                basePart = basePer;
-            }
-
-            if (extraCheckbox && extraCheckbox.checked && extraPer > 0) {
-                extraPart = extraPer;
-            }
-
-            const finalAmount = basePart + extraPart;
-            sumForAllEmployees += finalAmount;
-
-            if (finalAmount > 0) {
-                if (extraPart > 0 && basePart > 0) {
-                    amountCell.textContent =
-                        finalAmount.toLocaleString("ko-KR") +
-                        " 원 (기본 " +
-                        basePart.toLocaleString("ko-KR") +
-                        " + 추가 " +
-                        extraPart.toLocaleString("ko-KR") +
-                        ")";
-                } else if (basePart > 0) {
-                    amountCell.textContent = basePart.toLocaleString("ko-KR") + " 원";
-                } else if (extraPart > 0) {
-                    amountCell.textContent = extraPart.toLocaleString("ko-KR") + " 원";
-                } else {
-                    amountCell.textContent = "-";
-                }
-            } else {
-                amountCell.textContent = "-";
-            }
-
-            amountCell.setAttribute("data-amount", finalAmount.toString());
-        });
-
-        // 요약 영역 업데이트
-        spanCount.textContent =
-            totalCount +
-            "명 (기본 " +
-            baseCount +
-            "명 / 추가 " +
-            extraTargetCount +
-            "명)";
-        spanBasePer.textContent = basePer.toLocaleString("ko-KR") + "원";
-        spanExtraPer.textContent = extraPer.toLocaleString("ko-KR") + "원";
-        spanTotal.textContent = sumForAllEmployees.toLocaleString("ko-KR") + "원";
-
-        // "나(본인)" 부담 안내 (추가 정산 금액 기준)
-        if (extraTotal > 0 && extraPeopleCount > 0 && extraPer > 0) {
-            selfInfo.textContent =
-                "※ 참고: 추가 정산 " +
-                extraTotal.toLocaleString("ko-KR") +
-                "원을 " +
-                extraPeopleCount +
-                "명이 나누는 경우, 나(본인) 부담 금액은 " +
-                extraPer.toLocaleString("ko-KR") +
-                "원입니다.";
-        } else {
-            selfInfo.textContent = "";
-        }
+    function randomStatus() {
+        const msg = statusMessages[Math.floor(Math.random() * statusMessages.length)];
+        displayLine1.textContent = "🩺 윤릴라 상태 진단";
+        displayLine2.textContent = msg;
+        animateOnce(display, "pulse");
+        addLog("상태 점검 → " + msg);
     }
 
-    // 초기 세팅: 예시 상황 자동 적용
-    window.addEventListener("DOMContentLoaded", function () {
-        const totalInput = document.getElementById("totalAmount");
-        const extraInput = document.getElementById("extraAmount");
-        const extraCountInput = document.getElementById("extraPeopleCount");
-
-        // 예시 값 세팅
-        totalInput.value = 79000;      // 4명이서 나눌 금액
-        extraInput.value = 45000;      // 나 + 곽주임이 나눌 추가 금액
-        extraCountInput.value = 2;     // 나 + 곽주임 → 2명
-
-        // 직원 목록 기본 세팅
-        createEmployeeRow("곽주임", true, true);    // 기본 + 추가 대상
-        createEmployeeRow("권부장", true, false);   // 기본만
-        createEmployeeRow("미쓰킴", true, false);   // 기본만
-        createEmployeeRow("발사원", true, false);   // 기본만
-
-        // 초기 계산 반영
-        updateShares();
-    });
+    function resetDisplay() {
+        displayLine1.textContent = "[윤릴라 시스템 가동 중...]";
+        displayLine2.textContent = "버튼을 눌러 오늘의 윤릴라 상태를 확인해 보세요.";
+        animateOnce(display, "pulse");
+        addLog("화면 초기화");
+    }
 </script>
 
 </body>
