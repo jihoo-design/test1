@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<!-- saved from url=(0111)http://localhost:8080/Hannamhanyo/%ED%95%9C%EB%82%A8%ED%95%9C%EB%85%80%EC%A3%BC%EC%8B%9D%ED%9A%8C%EC%82%AC.html -->
+<html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>한남한녀 주식회사 경조 회비</title>
+
+    <style>
+        body {
+            font-family: "맑은 고딕", Arial, sans-serif;
+            background-color: #eceff1;
+            margin: 0;
+            padding: 20px 0;
+        }
+
+        /* 전체 앱을 모바일처럼 가운데 정렬 */
+        .app {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #fdfdfd;
+            border-radius: 18px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+        }
+
+        /* 상단 카톡 느낌 헤더 */
+        .app-header {
+            background-color: #FEE500; /* 카카오 노랑 느낌 */
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 15px;
+            background-color: #3c1e1e; /* 브라운색 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FEE500;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .header-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-text .title {
+            font-weight: bold;
+            font-size: 16px;
+            color: #3c1e1e;
+        }
+
+        .header-text .subtitle {
+            font-size: 11px;
+            color: #5d4037;
+        }
+
+        .app-body {
+            padding: 16px 14px 20px;
+            background-color: #f5f5f5;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 14px;
+            padding: 14px 14px 12px;
+            margin-bottom: 12px;
+        }
+
+        .card-title {
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-title small {
+            font-weight: normal;
+            font-size: 11px;
+            color: #777;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 6px;
+        }
+
+        label {
+            font-size: 12px;
+            min-width: 70px;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            padding: 6px 9px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 13px;
+            background-color: #fafafa;
+        }
+
+        input[type="number"] {
+            width: 140px;
+        }
+
+        button {
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .btn-main {
+            background-color: #FEE500;
+            color: #3c1e1e;
+            font-weight: bold;
+        }
+
+        .btn-main:hover {
+            filter: brightness(0.95);
+        }
+
+        .btn-ghost {
+            background-color: #eeeeee;
+            color: #444;
+        }
+
+        .btn-ghost:hover {
+            background-color: #e0e0e0;
+        }
+
+        .account-box {
+            background-color: #fff8d4;
+            border-radius: 12px;
+            padding: 10px 12px;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .account-label {
+            font-weight: bold;
+            color: #4e342e;
+        }
+
+        .account-number {
+            font-family: "Consolas", monospace;
+            font-weight: bold;
+        }
+
+        .info-text {
+            font-size: 11px;
+            color: #777;
+            margin-top: 4px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 6px;
+            font-size: 12px;
+        }
+
+        th, td {
+            border-bottom: 1px solid #eee;
+            padding: 6px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f7f7f7;
+            font-weight: bold;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .summary {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .summary-item {
+            flex: 1 1 45%;
+            background-color: #fffbea;
+            border-radius: 10px;
+            padding: 6px 8px;
+            font-size: 11px;
+            color: #555;
+        }
+
+        .summary-item span.label {
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .summary-item span.value {
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .error-msg {
+            color: #d32f2f;
+            margin-top: 4px;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="app">
+    <!-- 상단 헤더 -->
+    <div class="app-header">
+        <div class="header-icon">H</div>
+        <div class="header-text">
+            <span class="title">한남한녀 주식회사 경조 회비</span>
+            <span class="subtitle">회식 / 경조사 N/1 정산용 계산기</span>
+        </div>
+    </div>
+
+    <div class="app-body">
+
+        <!-- 회사 계좌 카드 -->
+        <div class="card">
+            <div class="card-title">
+                회사 계좌
+                <small>입금 안내용</small>
+            </div>
+            <div class="account-box">
+                <div>
+                    <div class="account-label">한남한녀 주식회사 경조 회비 계좌</div>
+                    <div class="account-number" id="accountText">
+                        기업은행 35112382001015
+                    </div>
+                </div>
+                <button class="btn-ghost" type="button" onclick="copyAccount()">
+                    계좌 복사
+                </button>
+            </div>
+            <div class="info-text">
+                단톡방에 “계좌 + 1인당 금액” 같이 보내면 깔끔하게 정산 가능 👍
+            </div>
+        </div>
+
+        <!-- 총 금액 카드 -->
+        <div class="card">
+            <div class="card-title">
+                1. 총 회식 / 경조 금액
+                <small>네가 먼저 계산한 전체 금액</small>
+            </div>
+            <div class="input-row">
+                <label for="totalAmount">총 금액</label>
+                <!-- placeholder 문구 제거 -->
+                <input type="number" id="totalAmount" min="0" oninput="updateShares()">
+                <span style="font-size:12px;">원</span>
+            </div>
+            <div class="info-text">
+                영수증 총합을 입력하면, 아래 직원 수 기준으로 자동 N/1 계산을 합니다.
+            </div>
+        </div>
+
+        <!-- 직원 카드 -->
+        <div class="card">
+            <div class="card-title">
+                2. 직원 이름 추가
+                <small>참여한 인원만 입력</small>
+            </div>
+            <div class="input-row">
+                <label for="employeeName">직원 이름</label>
+                <!-- placeholder 문구 제거 -->
+                <input type="text" id="employeeName">
+                <button class="btn-main" type="button" onclick="addEmployee()">추가</button>
+            </div>
+            <div id="errorMessage" class="error-msg"></div>
+
+            <table id="employeeTable">
+                <thead>
+                <tr>
+                    <th>직원 이름</th>
+                    <th>1인당 부담 금액</th>
+                    <th>삭제</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- 직원 목록이 여기에 추가됨 -->
+                <tr><td>곽주임</td><td data-amount="19750">19,750 원</td><td><button class="btn-ghost" type="button">삭제</button></td></tr><tr><td>발사원</td><td data-amount="19750">19,750 원</td><td><button class="btn-ghost" type="button">삭제</button></td></tr><tr><td>미쓰킴</td><td data-amount="19750">19,750 원</td><td><button class="btn-ghost" type="button">삭제</button></td></tr><tr><td>권부장</td><td data-amount="19750">19,750 원</td><td><button class="btn-ghost" type="button">삭제</button></td></tr></tbody>
+            </table>
+
+            <div class="summary">
+                <div class="summary-item">
+                    <span class="label">인원 수</span>
+                    <span class="value" id="summaryCount">4명</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">1인당 금액</span>
+                    <span class="value" id="summaryPerPerson">19,750원</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">총 금액</span>
+                    <span class="value" id="summaryTotal">79,000원</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">남는 금액(잔돈)</span>
+                    <span class="value" id="summaryRemainder">0원</span>
+                </div>
+            </div>
+
+            <div class="info-text">
+                1인당 금액 = 총 금액 / 인원 수 (소수점은 버림)<br>
+                남는 금액은 곽주임이 부담하거나 다음 회식 적립금으로 사용하면 됩니다.
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 계좌 복사
+    function copyAccount() {
+        const text = document.getElementById("accountText").innerText.trim();
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(function () {
+                alert("계좌번호가 클립보드에 복사되었습니다:\n" + text);
+            }).catch(function () {
+                alert("복사가 자동으로 안 되면 직접 드래그해서 복사해 주세요.\n\n" + text);
+            });
+        } else {
+            alert("복사가 자동으로 안 되면 직접 드래그해서 복사해 주세요.\n\n" + text);
+        }
+    }
+
+    // 직원 추가
+    function addEmployee() {
+        const nameInput = document.getElementById("employeeName");
+        const errorDiv = document.getElementById("errorMessage");
+        const name = nameInput.value.trim();
+
+        errorDiv.textContent = "";
+
+        if (name === "") {
+            errorDiv.textContent = "직원 이름을 입력해주세요.";
+            nameInput.focus();
+            return;
+        }
+
+        const tableBody = document.querySelector("#employeeTable tbody");
+        const row = document.createElement("tr");
+
+        // 이름 셀
+        const nameCell = document.createElement("td");
+        nameCell.textContent = name;
+        row.appendChild(nameCell);
+
+        // 금액 셀 (초기값은 계산 함수에서 채움)
+        const amountCell = document.createElement("td");
+        amountCell.setAttribute("data-amount", "0");
+        amountCell.textContent = "-";
+        row.appendChild(amountCell);
+
+        // 삭제 버튼 셀
+        const deleteCell = document.createElement("td");
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "삭제";
+        deleteButton.className = "btn-ghost";
+        deleteButton.type = "button";
+        deleteButton.onclick = function () {
+            row.remove();
+            updateShares();
+        };
+        deleteCell.appendChild(deleteButton);
+        row.appendChild(deleteCell);
+
+        tableBody.appendChild(row);
+
+        nameInput.value = "";
+        nameInput.focus();
+
+        updateShares();
+    }
+
+    // N/1 금액 계산
+    function updateShares() {
+        const totalInput = document.getElementById("totalAmount");
+        const tableBody = document.querySelector("#employeeTable tbody");
+        const rows = tableBody.querySelectorAll("tr");
+
+        const spanCount = document.getElementById("summaryCount");
+        const spanPerPerson = document.getElementById("summaryPerPerson");
+        const spanTotal = document.getElementById("summaryTotal");
+        const spanRemainder = document.getElementById("summaryRemainder");
+
+        let total = parseInt(totalInput.value.trim(), 10);
+        if (isNaN(total) || total < 0) {
+            total = 0;
+        }
+
+        const count = rows.length;
+
+        let perPerson = 0;
+        let remainder = 0;
+
+        if (count > 0 && total > 0) {
+            perPerson = Math.floor(total / count);
+            remainder = total % count;
+        }
+
+        // 각 직원 셀에 금액 채우기
+        rows.forEach(function (row) {
+            const amountCell = row.children[1];
+            if (perPerson > 0) {
+                amountCell.setAttribute("data-amount", perPerson.toString());
+                amountCell.textContent = perPerson.toLocaleString("ko-KR") + " 원";
+            } else {
+                amountCell.setAttribute("data-amount", "0");
+                amountCell.textContent = "-";
+            }
+        });
+
+        // 요약 영역 업데이트
+        spanCount.textContent = count + "명";
+        spanPerPerson.textContent = perPerson.toLocaleString("ko-KR") + "원";
+        spanTotal.textContent = total.toLocaleString("ko-KR") + "원";
+        spanRemainder.textContent = remainder.toLocaleString("ko-KR") + "원";
+    }
+</script>
+
+
+
+</body></html>
