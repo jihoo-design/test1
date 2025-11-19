@@ -98,7 +98,7 @@
 
         label {
             font-size: 12px;
-            min-width: 70px;
+            min-width: 80px;
             color: #555;
         }
 
@@ -264,7 +264,7 @@
         <div class="header-icon">H</div>
         <div class="header-text">
             <span class="title">한남한녀 주식회사 경조 회비</span>
-            <span class="subtitle">회식 / 경조사 N/1 정산용 계산기</span>
+            <span class="subtitle">회식 / 경조사 N/1 + 추가 정산 계산기</span>
         </div>
     </div>
 
@@ -288,31 +288,53 @@
                 </button>
             </div>
             <div class="info-text">
-                단톡방에 “계좌 + 1인당 금액” 같이 보내면 깔끔하게 정산 가능합니다.
+                단톡방에 “계좌 + 1인당 금액”을 같이 보내면 깔끔하게 정산 가능합니다.
             </div>
         </div>
 
-        <!-- 총 금액 카드 -->
+        <!-- 기본 금액 카드 -->
         <div class="card">
             <div class="card-title">
-                1. 총 회식 / 경조 금액
-                <small>네가 먼저 계산한 전체 금액</small>
+                1. 기본 회식 / 경조 금액
+                <small>여기에 4명이서 나눌 금액 입력</small>
             </div>
             <div class="input-row">
-                <label for="totalAmount">총 금액</label>
+                <label for="totalAmount">기본 총 금액</label>
                 <input type="number" id="totalAmount" min="0" oninput="updateShares()">
                 <span style="font-size:12px;">원</span>
             </div>
             <div class="info-text">
-                영수증 총합을 입력하면, 아래 직원 목록을 기준으로 자동으로 N분의 1 금액을 계산합니다.
+                예) 곽주임, 권부장, 미쓰킴, 발사원이 함께 나눌 전체 금액을 입력합니다.
+            </div>
+        </div>
+
+        <!-- 추가 정산 카드 -->
+        <div class="card">
+            <div class="card-title">
+                2. 추가 정산 금액
+                <small>특정 인원만 더 부담해야 하는 금액</small>
+            </div>
+            <div class="input-row">
+                <label for="extraAmount">추가 총 금액</label>
+                <input type="number" id="extraAmount" min="0" oninput="updateShares()">
+                <span style="font-size:12px;">원</span>
+            </div>
+            <div class="input-row">
+                <label for="extraPeopleCount">추가 정산 인원 수</label>
+                <input type="number" id="extraPeopleCount" min="1" oninput="updateShares()">
+                <span style="font-size:12px;">명 (예: 나 + 곽주임 → 2명)</span>
+            </div>
+            <div class="info-text">
+                예) 나와 곽주임이 45,000원을 둘이서 나누면 추가 정산 인원 수는 2명입니다.<br>
+                직원 목록에서 “추가” 체크가 된 사람에게만 이 추가 금액이 나눠서 반영됩니다.
             </div>
         </div>
 
         <!-- 직원 카드 -->
         <div class="card">
             <div class="card-title">
-                2. 직원 이름 추가
-                <small>참여한 인원만 입력</small>
+                3. 직원 목록 및 최종 정산
+                <small>처음에는 예시 정산 결과가 보입니다.</small>
             </div>
             <div class="input-row">
                 <label for="employeeName">직원 이름</label>
@@ -325,8 +347,9 @@
                 <thead>
                 <tr>
                     <th>직원 이름</th>
-                    <th class="checkbox-cell">정산 포함</th>
-                    <th>1인당 부담 금액</th>
+                    <th class="checkbox-cell">기본</th>
+                    <th class="checkbox-cell">추가</th>
+                    <th>최종 부담 금액</th>
                     <th>삭제</th>
                 </tr>
                 </thead>
@@ -338,25 +361,30 @@
             <div class="summary">
                 <div class="summary-item">
                     <span class="label">인원 수</span>
-                    <span class="value" id="summaryCount">0명 (정산 0명)</span>
+                    <span class="value" id="summaryCount">0명 (기본 0명 / 추가 0명)</span>
                 </div>
                 <div class="summary-item">
-                    <span class="label">1인당 금액</span>
-                    <span class="value" id="summaryPerPerson">0원</span>
+                    <span class="label">기본 1인당 금액</span>
+                    <span class="value" id="summaryBasePer">0원</span>
                 </div>
                 <div class="summary-item">
-                    <span class="label">총 금액</span>
+                    <span class="label">추가 1인당 금액</span>
+                    <span class="value" id="summaryExtraPer">0원</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">기본 + 추가 총 금액</span>
                     <span class="value" id="summaryTotal">0원</span>
-                </div>
-                <div class="summary-item">
-                    <span class="label">남는 금액(잔돈)</span>
-                    <span class="value" id="summaryRemainder">0원</span>
                 </div>
             </div>
 
             <div class="info-text">
-                정산 인원에 포함되지 않은 사람은 별도 정산 대상입니다.<br>
-                남는 금액은 곽주임이 부담하거나 다음 회식 적립금으로 사용하면 됩니다.
+                - “기본” 체크: 기본 회식/경조 금액(예: 79,000원)을 N분의 1로 나눌 대상입니다.<br>
+                - “추가” 체크: 추가 정산 금액(예: 45,000원)을 나누는 인원 중 직원에게 적용할 대상입니다.<br>
+                - 남는 금액은 곽주임이 부담하거나 다음 회식 적립금으로 사용하면 됩니다.
+            </div>
+
+            <div class="info-text" id="selfInfo" style="margin-top:6px; font-weight: bold; color:#555;">
+                <!-- 나(본인) 부담 안내 텍스트가 여기 들어감 -->
             </div>
         </div>
     </div>
@@ -378,20 +406,8 @@
         }
     }
 
-    // 직원 추가
-    function addEmployee() {
-        const nameInput = document.getElementById("employeeName");
-        const errorDiv = document.getElementById("errorMessage");
-        const name = nameInput.value.trim();
-
-        errorDiv.textContent = "";
-
-        if (name === "") {
-            errorDiv.textContent = "직원 이름을 입력해주세요.";
-            nameInput.focus();
-            return;
-        }
-
+    // 직원 행 추가 (공통 함수)
+    function createEmployeeRow(name, includeBase, includeExtra) {
         const tableBody = document.querySelector("#employeeTable tbody");
         const row = document.createElement("tr");
 
@@ -400,24 +416,41 @@
         nameCell.textContent = name;
         row.appendChild(nameCell);
 
-        // 정산 포함 체크박스 셀
-        const includeCell = document.createElement("td");
-        includeCell.className = "checkbox-cell";
-        const includeLabel = document.createElement("label");
-        includeLabel.style.cursor = "pointer";
-        const includeCheckbox = document.createElement("input");
-        includeCheckbox.type = "checkbox";
-        includeCheckbox.checked = true; // 기본값: 정산 포함
-        includeCheckbox.style.marginRight = "4px";
-        includeCheckbox.onchange = function () {
+        // 기본 정산 포함 체크박스 셀
+        const baseCell = document.createElement("td");
+        baseCell.className = "checkbox-cell";
+        const baseLabel = document.createElement("label");
+        baseLabel.style.cursor = "pointer";
+        const baseCheckbox = document.createElement("input");
+        baseCheckbox.type = "checkbox";
+        baseCheckbox.checked = includeBase;
+        baseCheckbox.style.marginRight = "4px";
+        baseCheckbox.onchange = function () {
             updateShares();
         };
-        includeLabel.appendChild(includeCheckbox);
-        includeLabel.appendChild(document.createTextNode("포함"));
-        includeCell.appendChild(includeLabel);
-        row.appendChild(includeCell);
+        baseLabel.appendChild(baseCheckbox);
+        baseLabel.appendChild(document.createTextNode("기본"));
+        baseCell.appendChild(baseLabel);
+        row.appendChild(baseCell);
 
-        // 금액 셀 (초기값은 계산 함수에서 채움)
+        // 추가 정산 대상 체크박스 셀
+        const extraCell = document.createElement("td");
+        extraCell.className = "checkbox-cell";
+        const extraLabel = document.createElement("label");
+        extraLabel.style.cursor = "pointer";
+        const extraCheckbox = document.createElement("input");
+        extraCheckbox.type = "checkbox";
+        extraCheckbox.checked = includeExtra;
+        extraCheckbox.style.marginRight = "4px";
+        extraCheckbox.onchange = function () {
+            updateShares();
+        };
+        extraLabel.appendChild(extraCheckbox);
+        extraLabel.appendChild(document.createTextNode("추가"));
+        extraCell.appendChild(extraLabel);
+        row.appendChild(extraCell);
+
+        // 최종 부담 금액 셀
         const amountCell = document.createElement("td");
         amountCell.setAttribute("data-amount", "0");
         amountCell.textContent = "-";
@@ -437,6 +470,23 @@
         row.appendChild(deleteCell);
 
         tableBody.appendChild(row);
+    }
+
+    // 새 직원 추가 (사용자 입력)
+    function addEmployee() {
+        const nameInput = document.getElementById("employeeName");
+        const errorDiv = document.getElementById("errorMessage");
+        const name = nameInput.value.trim();
+
+        errorDiv.textContent = "";
+
+        if (name === "") {
+            errorDiv.textContent = "직원 이름을 입력해주세요.";
+            nameInput.focus();
+            return;
+        }
+
+        createEmployeeRow(name, true, false);
 
         nameInput.value = "";
         nameInput.focus();
@@ -444,64 +494,156 @@
         updateShares();
     }
 
-    // N/1 금액 계산
+    // 정산 계산
     function updateShares() {
         const totalInput = document.getElementById("totalAmount");
+        const extraInput = document.getElementById("extraAmount");
+        const extraCountInput = document.getElementById("extraPeopleCount");
         const tableBody = document.querySelector("#employeeTable tbody");
         const rows = tableBody.querySelectorAll("tr");
 
         const spanCount = document.getElementById("summaryCount");
-        const spanPerPerson = document.getElementById("summaryPerPerson");
+        const spanBasePer = document.getElementById("summaryBasePer");
+        const spanExtraPer = document.getElementById("summaryExtraPer");
         const spanTotal = document.getElementById("summaryTotal");
-        const spanRemainder = document.getElementById("summaryRemainder");
+        const selfInfo = document.getElementById("selfInfo");
 
-        let total = parseInt(totalInput.value.trim(), 10);
-        if (isNaN(total) || total < 0) {
-            total = 0;
+        let baseTotal = parseInt(totalInput.value.trim(), 10);
+        if (isNaN(baseTotal) || baseTotal < 0) {
+            baseTotal = 0;
+        }
+
+        let extraTotal = parseInt(extraInput.value.trim(), 10);
+        if (isNaN(extraTotal) || extraTotal < 0) {
+            extraTotal = 0;
+        }
+
+        let extraPeopleCount = parseInt(extraCountInput.value.trim(), 10);
+        if (isNaN(extraPeopleCount) || extraPeopleCount <= 0) {
+            extraPeopleCount = 0;
         }
 
         const totalCount = rows.length;
-        let settleCount = 0;
+        let baseCount = 0;
+        let extraTargetCount = 0;
 
-        // 정산 포함 체크된 인원 수 계산
+        // 체크된 인원 수 세기
         rows.forEach(function (row) {
-            const includeCheckbox = row.querySelector('input[type="checkbox"]');
-            if (includeCheckbox && includeCheckbox.checked) {
-                settleCount++;
+            const baseCheckbox = row.children[1].querySelector('input[type="checkbox"]');
+            const extraCheckbox = row.children[2].querySelector('input[type="checkbox"]');
+
+            if (baseCheckbox && baseCheckbox.checked) {
+                baseCount++;
+            }
+            if (extraCheckbox && extraCheckbox.checked) {
+                extraTargetCount++;
             }
         });
 
-        let perPerson = 0;
-        let remainder = 0;
+        let basePer = 0;
+        let extraPer = 0;
 
-        if (settleCount > 0 && total > 0) {
-            perPerson = Math.floor(total / settleCount);
-            remainder = total % settleCount;
+        if (baseCount > 0 && baseTotal > 0) {
+            basePer = Math.floor(baseTotal / baseCount);
         }
 
-        // 각 직원 셀에 금액 채우기
-        rows.forEach(function (row) {
-            const includeCheckbox = row.querySelector('input[type="checkbox"]');
-            const amountCell = row.children[2]; // 세 번째 셀(금액)
+        if (extraPeopleCount > 0 && extraTotal > 0) {
+            // 추가 정산은 "전체 추가 정산 인원 수" 기준으로 나눔
+            extraPer = Math.floor(extraTotal / extraPeopleCount);
+        }
 
-            if (includeCheckbox && includeCheckbox.checked && perPerson > 0) {
-                amountCell.setAttribute("data-amount", perPerson.toString());
-                amountCell.textContent = perPerson.toLocaleString("ko-KR") + " 원";
-            } else if (includeCheckbox && includeCheckbox.checked && perPerson === 0) {
-                amountCell.setAttribute("data-amount", "0");
-                amountCell.textContent = "0 원";
-            } else {
-                amountCell.setAttribute("data-amount", "0");
-                amountCell.textContent = "별도 정산";
+        let sumForAllEmployees = 0;
+
+        // 각 직원 셀에 최종 금액 채우기
+        rows.forEach(function (row) {
+            const baseCheckbox = row.children[1].querySelector('input[type="checkbox"]');
+            const extraCheckbox = row.children[2].querySelector('input[type="checkbox"]');
+            const amountCell = row.children[3]; // 네 번째 셀(최종 금액)
+
+            let basePart = 0;
+            let extraPart = 0;
+
+            if (baseCheckbox && baseCheckbox.checked && basePer > 0) {
+                basePart = basePer;
             }
+
+            if (extraCheckbox && extraCheckbox.checked && extraPer > 0) {
+                extraPart = extraPer;
+            }
+
+            const finalAmount = basePart + extraPart;
+            sumForAllEmployees += finalAmount;
+
+            if (finalAmount > 0) {
+                if (extraPart > 0 && basePart > 0) {
+                    amountCell.textContent =
+                        finalAmount.toLocaleString("ko-KR") +
+                        " 원 (기본 " +
+                        basePart.toLocaleString("ko-KR") +
+                        " + 추가 " +
+                        extraPart.toLocaleString("ko-KR") +
+                        ")";
+                } else if (basePart > 0) {
+                    amountCell.textContent = basePart.toLocaleString("ko-KR") + " 원";
+                } else if (extraPart > 0) {
+                    amountCell.textContent = extraPart.toLocaleString("ko-KR") + " 원";
+                } else {
+                    amountCell.textContent = "-";
+                }
+            } else {
+                amountCell.textContent = "-";
+            }
+
+            amountCell.setAttribute("data-amount", finalAmount.toString());
         });
 
         // 요약 영역 업데이트
-        spanCount.textContent = totalCount + "명 (정산 " + settleCount + "명)";
-        spanPerPerson.textContent = perPerson.toLocaleString("ko-KR") + "원";
-        spanTotal.textContent = total.toLocaleString("ko-KR") + "원";
-        spanRemainder.textContent = remainder.toLocaleString("ko-KR") + "원";
+        spanCount.textContent =
+            totalCount +
+            "명 (기본 " +
+            baseCount +
+            "명 / 추가 " +
+            extraTargetCount +
+            "명)";
+        spanBasePer.textContent = basePer.toLocaleString("ko-KR") + "원";
+        spanExtraPer.textContent = extraPer.toLocaleString("ko-KR") + "원";
+        spanTotal.textContent = sumForAllEmployees.toLocaleString("ko-KR") + "원";
+
+        // "나(본인)" 부담 안내 (추가 정산 금액 기준)
+        if (extraTotal > 0 && extraPeopleCount > 0 && extraPer > 0) {
+            selfInfo.textContent =
+                "※ 참고: 추가 정산 " +
+                extraTotal.toLocaleString("ko-KR") +
+                "원을 " +
+                extraPeopleCount +
+                "명이 나누는 경우, 나(본인) 부담 금액은 " +
+                extraPer.toLocaleString("ko-KR") +
+                "원입니다.";
+        } else {
+            selfInfo.textContent = "";
+        }
     }
+
+    // 초기 세팅: 예시 상황 자동 적용
+    window.addEventListener("DOMContentLoaded", function () {
+        const totalInput = document.getElementById("totalAmount");
+        const extraInput = document.getElementById("extraAmount");
+        const extraCountInput = document.getElementById("extraPeopleCount");
+
+        // 예시 값 세팅
+        totalInput.value = 79000;      // 4명이서 나눌 금액
+        extraInput.value = 45000;      // 나 + 곽주임이 나눌 추가 금액
+        extraCountInput.value = 2;     // 나 + 곽주임 → 2명
+
+        // 직원 목록 기본 세팅
+        createEmployeeRow("곽주임", true, true);    // 기본 + 추가 대상
+        createEmployeeRow("권부장", true, false);   // 기본만
+        createEmployeeRow("미쓰킴", true, false);   // 기본만
+        createEmployeeRow("발사원", true, false);   // 기본만
+
+        // 초기 계산 반영
+        updateShares();
+    });
 </script>
 
 </body>
