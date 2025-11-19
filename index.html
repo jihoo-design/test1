@@ -1,30 +1,30 @@
 <!DOCTYPE html>
-<!-- saved from url=(0111)http://localhost:8080/Hannamhanyo/%ED%95%9C%EB%82%A8%ED%95%9C%EB%85%80%EC%A3%BC%EC%8B%9D%ED%9A%8C%EC%82%AC.html -->
-<html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
     <title>한남한녀 주식회사 경조 회비</title>
 
     <style>
         body {
-            font-family: "맑은 고딕", Arial, sans-serif;
-            background-color: #eceff1;
+            font-family: "맑은 고딕", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: linear-gradient(135deg, #eceff1, #f5f5f5);
             margin: 0;
             padding: 20px 0;
         }
 
-        /* 전체 앱을 모바일처럼 가운데 정렬 */
+        /* 전체 앱을 모바일 카드처럼 가운데 정렬 */
         .app {
             max-width: 480px;
             margin: 0 auto;
             background-color: #fdfdfd;
-            border-radius: 18px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+            border-radius: 22px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             overflow: hidden;
         }
 
         /* 상단 카톡 느낌 헤더 */
         .app-header {
-            background-color: #FEE500; /* 카카오 노랑 느낌 */
+            background: linear-gradient(135deg, #FEE500, #ffe96b);
             padding: 14px 18px;
             display: flex;
             align-items: center;
@@ -32,16 +32,16 @@
         }
 
         .header-icon {
-            width: 30px;
-            height: 30px;
-            border-radius: 15px;
-            background-color: #3c1e1e; /* 브라운색 */
+            width: 32px;
+            height: 32px;
+            border-radius: 16px;
+            background-color: #3c1e1e;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #FEE500;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 17px;
         }
 
         .header-text {
@@ -67,13 +67,14 @@
 
         .card {
             background-color: #ffffff;
-            border-radius: 14px;
+            border-radius: 18px;
             padding: 14px 14px 12px;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
+            box-shadow: 0 2px 7px rgba(0,0,0,0.06);
         }
 
         .card-title {
-            font-weight: bold;
+            font-weight: 600;
             font-size: 14px;
             margin-bottom: 10px;
             display: flex;
@@ -104,10 +105,19 @@
         input[type="text"],
         input[type="number"] {
             padding: 6px 9px;
-            border: 1px solid #ccc;
+            border: 1px solid #d0d0d0;
             border-radius: 10px;
             font-size: 13px;
             background-color: #fafafa;
+            transition: border-color 0.15s, box-shadow 0.15s, background-color 0.15s;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #ffcc00;
+            box-shadow: 0 0 0 2px rgba(255, 204, 0, 0.25);
+            background-color: #ffffff;
         }
 
         input[type="number"] {
@@ -115,12 +125,17 @@
         }
 
         button {
-            padding: 6px 10px;
+            padding: 6px 11px;
             border-radius: 999px;
             border: none;
             cursor: pointer;
             font-size: 12px;
             white-space: nowrap;
+            transition: filter 0.15s, transform 0.05s;
+        }
+
+        button:active {
+            transform: translateY(1px);
         }
 
         .btn-main {
@@ -130,7 +145,7 @@
         }
 
         .btn-main:hover {
-            filter: brightness(0.95);
+            filter: brightness(0.96);
         }
 
         .btn-ghost {
@@ -144,7 +159,7 @@
 
         .account-box {
             background-color: #fff8d4;
-            border-radius: 12px;
+            border-radius: 14px;
             padding: 10px 12px;
             font-size: 13px;
             display: flex;
@@ -167,6 +182,7 @@
             font-size: 11px;
             color: #777;
             margin-top: 4px;
+            line-height: 1.5;
         }
 
         table {
@@ -201,7 +217,7 @@
         .summary-item {
             flex: 1 1 45%;
             background-color: #fffbea;
-            border-radius: 10px;
+            border-radius: 12px;
             padding: 6px 8px;
             font-size: 11px;
             color: #555;
@@ -221,6 +237,22 @@
             color: #d32f2f;
             margin-top: 4px;
             font-size: 11px;
+        }
+
+        .checkbox-cell {
+            font-size: 11px;
+        }
+
+        .checkbox-cell label {
+            min-width: 0;
+            font-size: 11px;
+            color: #555;
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                border-radius: 16px;
+            }
         }
     </style>
 </head>
@@ -256,7 +288,7 @@
                 </button>
             </div>
             <div class="info-text">
-                단톡방에 “계좌 + 1인당 금액” 같이 보내면 깔끔하게 정산 가능 👍
+                단톡방에 “계좌 + 1인당 금액” 같이 보내면 깔끔하게 정산 가능합니다.
             </div>
         </div>
 
@@ -268,12 +300,11 @@
             </div>
             <div class="input-row">
                 <label for="totalAmount">총 금액</label>
-                <!-- placeholder 문구 제거 -->
                 <input type="number" id="totalAmount" min="0" oninput="updateShares()">
                 <span style="font-size:12px;">원</span>
             </div>
             <div class="info-text">
-                영수증 총합을 입력하면, 아래 직원 수 기준으로 자동 N/1 계산을 합니다.
+                영수증 총합을 입력하면, 아래 직원 목록을 기준으로 자동으로 N분의 1 금액을 계산합니다.
             </div>
         </div>
 
@@ -285,7 +316,6 @@
             </div>
             <div class="input-row">
                 <label for="employeeName">직원 이름</label>
-                <!-- placeholder 문구 제거 -->
                 <input type="text" id="employeeName">
                 <button class="btn-main" type="button" onclick="addEmployee()">추가</button>
             </div>
@@ -295,27 +325,28 @@
                 <thead>
                 <tr>
                     <th>직원 이름</th>
+                    <th class="checkbox-cell">정산 포함</th>
                     <th>1인당 부담 금액</th>
                     <th>삭제</th>
                 </tr>
                 </thead>
                 <tbody>
                 <!-- 직원 목록이 여기에 추가됨 -->
-                <tr><td>곽주임</td><td data-amount="19750">19,750 원</td><td><button class="btn-ghost" type="button">삭제</button></td></tr><tr><td>발사원</td><td data-amount="19750">19,750 원</td><td><button class="btn-ghost" type="button">삭제</button></td></tr><tr><td>미쓰킴</td><td data-amount="19750">19,750 원</td><td><button class="btn-ghost" type="button">삭제</button></td></tr><tr><td>권부장</td><td data-amount="19750">19,750 원</td><td><button class="btn-ghost" type="button">삭제</button></td></tr></tbody>
+                </tbody>
             </table>
 
             <div class="summary">
                 <div class="summary-item">
                     <span class="label">인원 수</span>
-                    <span class="value" id="summaryCount">4명</span>
+                    <span class="value" id="summaryCount">0명 (정산 0명)</span>
                 </div>
                 <div class="summary-item">
                     <span class="label">1인당 금액</span>
-                    <span class="value" id="summaryPerPerson">19,750원</span>
+                    <span class="value" id="summaryPerPerson">0원</span>
                 </div>
                 <div class="summary-item">
                     <span class="label">총 금액</span>
-                    <span class="value" id="summaryTotal">79,000원</span>
+                    <span class="value" id="summaryTotal">0원</span>
                 </div>
                 <div class="summary-item">
                     <span class="label">남는 금액(잔돈)</span>
@@ -324,7 +355,7 @@
             </div>
 
             <div class="info-text">
-                1인당 금액 = 총 금액 / 인원 수 (소수점은 버림)<br>
+                정산 인원에 포함되지 않은 사람은 별도 정산 대상입니다.<br>
                 남는 금액은 곽주임이 부담하거나 다음 회식 적립금으로 사용하면 됩니다.
             </div>
         </div>
@@ -369,6 +400,23 @@
         nameCell.textContent = name;
         row.appendChild(nameCell);
 
+        // 정산 포함 체크박스 셀
+        const includeCell = document.createElement("td");
+        includeCell.className = "checkbox-cell";
+        const includeLabel = document.createElement("label");
+        includeLabel.style.cursor = "pointer";
+        const includeCheckbox = document.createElement("input");
+        includeCheckbox.type = "checkbox";
+        includeCheckbox.checked = true; // 기본값: 정산 포함
+        includeCheckbox.style.marginRight = "4px";
+        includeCheckbox.onchange = function () {
+            updateShares();
+        };
+        includeLabel.appendChild(includeCheckbox);
+        includeLabel.appendChild(document.createTextNode("포함"));
+        includeCell.appendChild(includeLabel);
+        row.appendChild(includeCell);
+
         // 금액 셀 (초기값은 계산 함수에서 채움)
         const amountCell = document.createElement("td");
         amountCell.setAttribute("data-amount", "0");
@@ -412,36 +460,49 @@
             total = 0;
         }
 
-        const count = rows.length;
+        const totalCount = rows.length;
+        let settleCount = 0;
+
+        // 정산 포함 체크된 인원 수 계산
+        rows.forEach(function (row) {
+            const includeCheckbox = row.querySelector('input[type="checkbox"]');
+            if (includeCheckbox && includeCheckbox.checked) {
+                settleCount++;
+            }
+        });
 
         let perPerson = 0;
         let remainder = 0;
 
-        if (count > 0 && total > 0) {
-            perPerson = Math.floor(total / count);
-            remainder = total % count;
+        if (settleCount > 0 && total > 0) {
+            perPerson = Math.floor(total / settleCount);
+            remainder = total % settleCount;
         }
 
         // 각 직원 셀에 금액 채우기
         rows.forEach(function (row) {
-            const amountCell = row.children[1];
-            if (perPerson > 0) {
+            const includeCheckbox = row.querySelector('input[type="checkbox"]');
+            const amountCell = row.children[2]; // 세 번째 셀(금액)
+
+            if (includeCheckbox && includeCheckbox.checked && perPerson > 0) {
                 amountCell.setAttribute("data-amount", perPerson.toString());
                 amountCell.textContent = perPerson.toLocaleString("ko-KR") + " 원";
+            } else if (includeCheckbox && includeCheckbox.checked && perPerson === 0) {
+                amountCell.setAttribute("data-amount", "0");
+                amountCell.textContent = "0 원";
             } else {
                 amountCell.setAttribute("data-amount", "0");
-                amountCell.textContent = "-";
+                amountCell.textContent = "별도 정산";
             }
         });
 
         // 요약 영역 업데이트
-        spanCount.textContent = count + "명";
+        spanCount.textContent = totalCount + "명 (정산 " + settleCount + "명)";
         spanPerPerson.textContent = perPerson.toLocaleString("ko-KR") + "원";
         spanTotal.textContent = total.toLocaleString("ko-KR") + "원";
         spanRemainder.textContent = remainder.toLocaleString("ko-KR") + "원";
     }
 </script>
 
-
-
-</body></html>
+</body>
+</html>
